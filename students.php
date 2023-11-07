@@ -22,32 +22,34 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form id="saveStudent">
+        <form id="saveStudent" action="">
           <div class="modal-body">
             <div class="alert alert-warning d-none" id="errorMessage"></div>
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" class="form-control" id="name" name="name">
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" id="phone">
+              <input type="text" class="form-control" id="phone" name="phone">
             </div>
             <div class="mb-3">
               <label for="course" class="form-label">Course</label>
-              <input type="text" class="form-control" id="course">
+              <input type="text" class="form-control" id="course" name="course">
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Student</button>
+          </div>
         </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Student</button>
-        </div>
+
+        
       </div>
     </div>
   </div>
@@ -86,14 +88,15 @@
       formData.append("save_student", true);
 
       $.ajax({
-        type: "POST",
+        type: "post",
         url: "code.php",
         data: formData,
         processData: false,
         contentType: false,
         success: function (response) {
 
-          var res = jQuery.parseJSON(response);
+          // var res = jQuery.parseJSON(response);
+          var res = JSON.parse(response);
           if(res.status == 422) {
             $('#errorMessage').removeClass('d-none');
             $('#errorMessage').text(res.message); 
