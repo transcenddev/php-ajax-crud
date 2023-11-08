@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="transcenddev, Reymar V. Mirante">
-  <meta name="description" content="PHP ajax crud, php mysql crud app">
+  <meta name="description" content="PHP Ajax CRUD, PHP MySQL CRUD App">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>PHP Ajax CRUD</title>
@@ -67,7 +67,62 @@
             </h4>
           </div>
           <div class="card-body">
+            <div class="container">
+              <h2>Student Information</h2>
+              <p>This is the student information</p>            
 
+              <?php 
+                require_once('dbcon.php');
+                $query = "SELECT * FROM students";
+                $query_run = mysqli_query($con, $query);
+              ?>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while ($row = mysqli_fetch_assoc($query_run)) { ?>
+                    <tr>
+                      <td><?php echo $row['id']; ?></td>
+                      <td><?php echo $row['name']; ?></td>
+                      <td><?php echo $row['email']; ?></td>
+                      <td><?php echo $row['phone']; ?></td>
+                      <td><?php echo $row['course']; ?></td>
+                      <td>
+                        <a href="#" class="btn btn-info">Edit</a>
+                        <a href="#" class="btn btn-success">Edit</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+                  <!-- <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                  </tr>
+                  <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                  </tr>
+                  <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

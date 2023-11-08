@@ -2,10 +2,9 @@
 
 
 <?php
-
 // Enable error reporting
 
-$con = mysqli_connect('localhost', 'root','', 'blog');
+require_once('dbcon.php');
 
 if(isset($_POST['save_student']))
 {
