@@ -381,7 +381,7 @@
               alertify.set('notifier','position', 'top-right');
               alertify.success(response.message);
 
-              $("#tableStudent").load(location.href + "#tableStudent");
+              $('#tableStudent').load(location.href + " #tableStudent");
             }
           }
         });
