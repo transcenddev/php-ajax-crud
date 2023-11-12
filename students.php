@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- Alertify CSS -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
   <title>PHP Ajax CRUD</title>
 </head>
 
@@ -252,6 +252,9 @@
             $studentAddModal.modal('hide');
             $saveStudentForm[0].reset();
 
+            alertify.set('notifier','position', 'top-right');
+            alertify.success(response.message);
+
             $('#tableStudent').load(location.href + " #tableStudent");
           }
         }
@@ -311,6 +314,10 @@
           } else if (response.status === 200) {
 
             $errorMessage.addClass('d-none');
+
+            alertify.set('notifier','position', 'top-right');
+            alertify.success(response.message);
+
             $studentEditModal.modal('hide');
             $updateStudent[0].reset();
 
@@ -370,8 +377,11 @@
             alert(response.message);
             } else if (response.status === 200) {
 
-              alert(response.message);
-              $("#tableStudent").load(location.href + "#tableStudent")
+              // alert(response.message);
+              alertify.set('notifier','position', 'top-right');
+              alertify.success(response.message);
+
+              $("#tableStudent").load(location.href + "#tableStudent");
             }
           }
         });
